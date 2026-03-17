@@ -266,6 +266,24 @@ nav.scrolled .logo img {
     max-width: 800px;
 }
 
+.hero-content h1 {
+    font-size: var(--text-hero);
+    color: var(--color-white);
+    margin-bottom: 24px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    color: var(--color-off-white);
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+}
+
 .carousel-dots {
     position: absolute;
     bottom: 80px;
@@ -812,4 +830,40 @@ footer {
     .nav-links { display: none; }
     .hero-content h1 { font-size: 36px; }
     .section-padding { padding: 60px 0; }
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
+    color: #FFF;
+}
+
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+    }
 }
