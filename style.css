@@ -87,6 +87,7 @@ img {
 }
 
 .btn {
+        border-radius: 30px !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -196,17 +197,39 @@ nav.scrolled .logo img {
     color: var(--color-amber);
 }
 
-/* Hero */
+/* Carousel */
 .hero {
     height: 100vh;
     min-height: 600px;
     position: relative;
-    display: flex;
-    align-items: center;
-    background: url('assets/images/hero.png') center/cover no-repeat;
+    overflow: hidden;
 }
 
-.hero::before {
+.carousel-container {
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-slide::before {
     content: '';
     position: absolute;
     top: 0;
@@ -222,38 +245,147 @@ nav.scrolled .logo img {
     max-width: 800px;
 }
 
-.hero-content h1 {
-    font-size: var(--text-hero);
-    color: var(--color-white);
-    margin-bottom: 24px;
-}
-
-.hero-content p {
-    font-size: var(--text-lead);
-    color: var(--color-off-white);
-    margin-bottom: 40px;
-    opacity: 0.9;
-    max-width: 600px;
-}
-
-.hero-btns {
+.carousel-dots {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    gap: 16px;
+    gap: 12px;
+    z-index: 20;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background-color: var(--color-amber);
+    width: 32px;
+    border-radius: 6px;
 }
 
 .scroll-indicator {
     position: absolute;
-    bottom: 40px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
     cursor: pointer;
+    z-index: 20;
 }
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
     40% {transform: translateY(-10px) translateX(-50%);}
     60% {transform: translateY(-5px) translateX(-50%);}
+}
+
+/* Subpage Header */
+.sub-header {
+    height: 350px;
+    background-color: var(--color-navy);
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.sub-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(10, 22, 40, 1) 0%, rgba(10, 22, 40, 0.4) 100%);
+    z-index: 1;
+}
+
+.sub-header-content {
+    position: relative;
+    z-index: 10;
+}
+
+.sub-header h1 {
+    font-size: var(--text-h1);
+    color: var(--color-white);
+    margin: 0;
+}
+
+.breadcrumb {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--color-amber);
+    margin-bottom: 12px;
+}
+
+.breadcrumb a {
+    color: var(--color-muted);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-white);
+}
+
+.service-detail-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 64px;
+}
+
+.detail-content h3 {
+    margin: 32px 0 16px;
+    color: var(--color-amber);
+}
+
+.detail-content ul {
+    margin-bottom: 24px;
+}
+
+.detail-content li {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+}
+
+.detail-content li i {
+    color: var(--color-amber);
+    margin-top: 5px;
+}
+
+.sidebar-card {
+    background-color: var(--color-midnight);
+    padding: 32px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    border: 1px solid var(--color-divider);
+}
+
+.sidebar-card h4 {
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-amber);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.service-links li {
+    margin-bottom: 16px;
+}
+
+.service-links a {
+    color: var(--color-muted);
+    font-weight: 600;
+}
+
+.service-links a:hover, .service-links a.active {
+    color: var(--color-amber);
 }
 
 /* Stats */

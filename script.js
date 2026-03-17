@@ -55,12 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
         window.requestAnimationFrame(step);
     }
 
-    // Smooth scroll for nav links
+    // Smooth scroll for nav links (only for internal links)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
+            const target = document.querySelector(href);
             if (target) {
+                e.preventDefault();
                 const offset = 80;
                 const bodyRect = document.body.getBoundingClientRect().top;
                 const elementRect = target.getBoundingClientRect().top;
@@ -74,4 +77,53 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Hero Carousel
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    const slideInterval = 5000;
+    let timer;
+
+    function showSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        slides[n].classList.add('active');
+        dots[n].classList.add('active');
+        currentSlide = n;
+    }
+
+    function nextSlide() {
+        let n = (currentSlide + 1) % slides.length;
+        showSlide(n);
+    }
+
+    function startTimer() {
+        timer = setInterval(nextSlide, slideInterval);
+    }
+
+    function stopTimer() {
+        clearInterval(timer);
+    }
+
+    if (slides.length > 0) {
+        startTimer();
+
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', stopTimer);
+            carouselContainer.addEventListener('mouseleave', startTimer);
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                // Timer is already handled by hover/leave if applicable
+                // but let's reset it anyway for click interaction
+                stopTimer();
+                startTimer();
+            });
+        });
+    }
 });
