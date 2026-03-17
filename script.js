@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.dot');
     let currentSlide = 0;
-    const slideInterval = 5000;
+    const slideInterval = 2000;
     let timer;
 
     function showSlide(n) {
