@@ -137,7 +137,7 @@ img {
 
 /* Navbar */
 nav {
-    height: 200px;
+    height: 120px;
     background-color: rgba(10, 22, 40, 0.82);
     backdrop-filter: blur(12px);
     position: fixed;
@@ -151,7 +151,7 @@ nav {
 }
 
 nav.scrolled {
-    height: 140px;
+    height: 90px;
     background-color: rgba(10, 22, 40, 0.95);
 }
 
@@ -187,12 +187,18 @@ nav.scrolled .logo-text {
 }
 
 .logo img {
-    height: 160px;
+    height: 90px;
     transition: 0.3s ease;
 }
 
 nav.scrolled .logo img {
-    height: 120px;
+    height: 70px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 48px;
 }
 
 .nav-links {
@@ -216,6 +222,61 @@ nav.scrolled .logo img {
 
 .nav-links a.active {
     color: var(--color-amber);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+@media (max-width: 992px) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 400px;
+        height: 100vh;
+        background-color: var(--color-midnight);
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        z-index: 1050;
+        padding: 40px;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 24px;
+        width: 100%;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--color-divider);
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .btn.nav-cta {
+        width: 100%;
+        margin-top: 20px;
+    }
 }
 
 /* Carousel */
@@ -928,13 +989,31 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .about-grid, .stats-grid, .services-grid, .features-grid, .footer-grid {
-        grid-template-columns: 1fr;
+    .about-grid, .stats-grid, .services-grid, .features-grid, .footer-grid, .service-detail-grid {
+        grid-template-columns: 1fr !important;
     }
     .about-grid { gap: 40px; }
-    .nav-links { display: none; }
-    .hero-content h1 { font-size: 36px; }
-    .section-padding { padding: 60px 0; }
+    .hero-content h1 { font-size: 32px; margin-bottom: 16px; }
+    .hero-content p { font-size: 16px; margin-bottom: 32px; }
+    .hero-btns { flex-direction: column; width: 100%; }
+    .hero-btns .btn { width: 100%; }
+    .section-padding { padding: 40px 0; }
+    
+    .sub-header { height: 250px; padding-bottom: 30px; }
+    .sub-header h1 { font-size: 28px; }
+    
+    nav { height: 80px; }
+    nav.scrolled { height: 70px; }
+    .logo img { height: 60px; }
+    nav.scrolled .logo img { height: 50px; }
+    .logo-text { font-size: 18px; }
+    nav.scrolled .logo-text { font-size: 16px; }
+    
+    .stats-bar { padding: 32px 0; }
+    .stat-item { padding: 20px 0; border-bottom: 1px solid var(--color-divider); }
+    .stat-item:last-child { border-bottom: none; }
+    
+    .service-detail-grid { gap: 40px; }
 }
 
 /* WhatsApp Floating Button */
